@@ -3,12 +3,14 @@ import 'package:s_media_app/components/my_button.dart';
 import 'package:s_media_app/components/my_textfiled.dart';
 
 class RegisterPage extends StatelessWidget {
+  final  void Function()? onTap;
+  RegisterPage({super.key,required this.onTap});
+  //text controller
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-  RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {

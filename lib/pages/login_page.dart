@@ -3,9 +3,11 @@ import 'package:s_media_app/components/my_button.dart';
 import 'package:s_media_app/components/my_textfiled.dart';
 
 class LoginPage extends StatelessWidget {
+  final void Function()? onTap;
+  LoginPage({super.key, required this.onTap});
+  //text controller
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class LoginPage extends StatelessWidget {
                   width: 5,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: onTap,
                   child: const Text(
                     "Register Here",
                     style: TextStyle(fontWeight: FontWeight.bold),
