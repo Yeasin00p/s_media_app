@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:s_media_app/auth/login_or_register.dart';
+import 'package:s_media_app/auth/auth_page.dart';
 import 'package:s_media_app/firebase_options.dart';
 import 'package:s_media_app/theme/dark_mode.dart';
 import 'package:s_media_app/theme/light_mode.dart';
@@ -17,10 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'S Media',
-        theme: lightMode,
-        darkTheme: darkMode,
-        home: const LoginOrRegister());
+      debugShowCheckedModeBanner: false,
+      title: 'S Media',
+      theme: lightMode,
+      darkTheme: darkMode,
+      home: const AuthPage(),
+    );
   }
 }
