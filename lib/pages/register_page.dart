@@ -1,10 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:s_media_app/components/my_button.dart';
 import 'package:s_media_app/components/my_textfiled.dart';
+import 'package:s_media_app/helper/helper_function.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  RegisterPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   //text controller
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -13,12 +21,42 @@ class RegisterPage extends StatelessWidget {
       TextEditingController();
 
   // register method
-  void registerUser() {
-    //show loading circel 
+  void registerUser() async {
+    //show loading circel
+    showDialog(
+      context: context,
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
 
     //make sure password match
-
-    //try creating the uaer
+    if (passwordController.text != confirmPasswordController.text) {
+      //pop loading circel
+      Navigator.pop(context);
+      //show error massage to user
+      displayMassageToUser("Password don't match", context);
+    }
+    //if password do match
+     else {
+      //try creating the uaer
+      try {
+        //create the user
+        UserCredential? userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        //pop loading circel
+        Navigator.pop(context);
+      } on FirebaseAuthException catch (e) {
+        //pop loading circel
+        Navigator.pop(context);
+        //show error massage to user
+      
+        displayMassageToUser(e.code, context);
+      }
+    }
   }
 
   @override
@@ -52,7 +90,7 @@ class RegisterPage extends StatelessWidget {
             MyTextFiled(
               hintText: 'User Name',
               obscureText: false,
-              controller: emailController,
+              controller: userNameController,
             ),
             const SizedBox(
               height: 10,
@@ -79,7 +117,7 @@ class RegisterPage extends StatelessWidget {
             MyTextFiled(
               hintText: 'Confirm Password',
               obscureText: true,
-              controller: passwordController,
+              controller: confirmPasswordController,
             ),
 
             const SizedBox(
@@ -88,7 +126,7 @@ class RegisterPage extends StatelessWidget {
             //login button
             MyButton(
               text: 'Register',
-              onTap: () {},
+              onTap: registerUser,
             ),
             const SizedBox(
               height: 20,
@@ -107,7 +145,7 @@ class RegisterPage extends StatelessWidget {
                   width: 5,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: (){},
                   child: const Text(
                     "Login Here",
                     style: TextStyle(fontWeight: FontWeight.bold),
