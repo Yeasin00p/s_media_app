@@ -37,13 +37,23 @@ class MyDrawer extends StatelessWidget {
               HomeListTile(
                 iconData: Icons.person,
                 text: 'P R O F I L E',
-                onTap: () {},
+                onTap: () {
+                  //pop drawer
+                  Navigator.pop(context);
+                  //navigate to profile page
+                  Navigator.pushNamed(context, '/profile_page');
+                },
               ),
               //user tittle
               HomeListTile(
                 iconData: Icons.group,
                 text: 'U S E R S',
-                onTap: () {},
+                onTap: () {
+                  //pop drawer
+                  Navigator.pop(context);
+                  //navigate to user page
+                  Navigator.pushNamed(context, '/users_page');
+                },
               ),
             ],
           ),
