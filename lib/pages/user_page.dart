@@ -10,6 +10,7 @@ class UserPage extends StatelessWidget {
         title: const Text('Users'),
         centerTitle: true,
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        elevation: 0,
       ),
     );
   }
