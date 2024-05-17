@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -51,8 +53,10 @@ class _RegisterPageState extends State<RegisterPage> {
         //creating a user document and add to firestore
         createUserDocument(userCredential);
         //pop loading circel
-        if(context.mounted)
-        Navigator.pop(context);
+        if (context.mounted) {
+          Navigator.pop(context);
+        }
+        // ignore: curly_braces_in_flow_control_structures
       } on FirebaseAuthException catch (e) {
         //pop loading circel
         Navigator.pop(context);
