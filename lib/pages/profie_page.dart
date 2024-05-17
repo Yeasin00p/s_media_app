@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:s_media_app/components/my_back_button.dart';
 
 class ProiFilePage extends StatelessWidget {
   ProiFilePage({super.key});
@@ -43,11 +44,50 @@ class ProiFilePage extends StatelessWidget {
             Map<String, dynamic>? user = snapshot.data!.data();
             return Column(
               children: [
-                Text(
-                  user!['email'],
+                //back button
+                const Padding(
+                  padding: EdgeInsets.only(
+                    left: 25,
+                    top: 50,
+                  ),
+                  child: Row(
+                    children: [
+                      MyBackButton(),
+                    ],
+                  ),
                 ),
+                //profile pic
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius: BorderRadius.circular(24),
+                  ),
+                  padding: const EdgeInsets.all(24),
+                  child: const Icon(
+                    Icons.person,
+                    size: 64,
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                //username
                 Text(
-                  user['username'],
+                  user!['username'],
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                //email
+                Text(
+                  user['email'],
+                  style: TextStyle(
+                    color: Colors.grey[600],
+                  ),
                 ),
               ],
             );
