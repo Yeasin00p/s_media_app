@@ -18,12 +18,6 @@ class ProiFilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ProFile Page'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        elevation: 0,
-      ),
       backgroundColor: Theme.of(context).colorScheme.background,
       body: FutureBuilder(
         future: getUserDetails(),

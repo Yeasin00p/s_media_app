@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
       home: const AuthPage(),
       routes: {
         '/login_registr_page': (context) => const LoginOrRegister(),
-        '/home_page': (context) => const HomePage(),
-        '/profile_page': (context) =>  ProiFilePage(),
+        '/home_page': (context) => HomePage(),
+        '/profile_page': (context) => ProiFilePage(),
         '/users_page': (context) => const UserPage(),
       },
     );
